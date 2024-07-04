@@ -50,8 +50,6 @@ class Restauraunts:
         score = 0
         self.clear()
         for place in self.places:
-            print(decision)
-            print(score)
             self.displayProgress()
             choices = self.getPlaces(place)
             decision = [husband.score(choices), wife.score(choices)]
