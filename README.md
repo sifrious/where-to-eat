@@ -1,4 +1,4 @@
-# where-to-eat
+# Where Should We Eat?
 cli application to decide where a couple should eat. legal marriage is not a requirement to use this program, but unmarried couples will need to decide who gets to use the class `Wife` instance
 
 ## how to use:
