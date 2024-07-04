@@ -7,10 +7,10 @@ class Restauraunt:
             self.score = args[0]
         self.name = name
 
-    def prompt(self, otherPlace):
+    def prompt(self, other_place):
         options = "\nOptions:\n - no\n - meh\n - yes \n - BIG YES\n\n >> "
         response = input(
-            f"Would you prefer {self.name} over {otherPlace.name}?{options}")
+            f"Would you prefer {self.name} over {other_place.name}?{options}")
         return response.lower().replace(" ", "")
 
     def __repr__(self):
@@ -25,7 +25,7 @@ class Restauraunts:
             Restauraunt("Choice C", .7),
             Restauraunt("Choice D")
         ]
-        self.winningScore = -100
+        self.winning_score = -100
         self.winner = None
 
     @staticmethod
@@ -35,13 +35,16 @@ class Restauraunts:
         else:
             _ = os.system('clear')
 
-    def getPlaces(self, place):
-        try:
-            return place, self.places[self.places.index(place) + 1]
-        except:
-            return [place, Restauraunt("just stay at home", .5)]
+    def get_places(self, place):
+        if self.winner:
+            return [place, self.winner]
+        else:
+            try:
+                return [place, self.places[self.places.index(place) + 1]]
+            except:
+                return [place, Restauraunt("just stay at home", .5)]
 
-    def displayProgress(self):
+    def display_progress(self):
         if self.winner:
             print(f"leaning towards {self.winner.name} so far...\n\n")
 
@@ -50,12 +53,14 @@ class Restauraunts:
         score = 0
         self.clear()
         for place in self.places:
-            self.displayProgress()
-            choices = self.getPlaces(place)
+            print(decision)
+            print(score)
+            self.display_progress()
+            choices = self.get_places(place)
             decision = [husband.score(choices), wife.score(choices)]
             score = (decision[0] + decision[1])/2
-            if score > self.winningScore:
-                self.winningScore = score
+            if score > self.winning_score:
+                self.winning_score = score
                 self.winner = place
             if score > 3:
                 self.winner = place
@@ -81,10 +86,10 @@ class Husband:
 
     def score(self, options):
         place = options[0]
-        otherPlace = options[1]
+        other_place = options[1]
         print(f"\n\n/================= \n|  {self.name}:\n|\n")
         while True:
-            response = place.prompt(otherPlace)
+            response = place.prompt(other_place)
             if hasattr(self, response):
                 return self.weigh(place, response)
             print("\n\nI'm not understanding you. Try again?\n\n")
