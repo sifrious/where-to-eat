@@ -3,7 +3,7 @@ cli application to decide where a couple should eat. legal marriage is not a req
 
 
 ## configuration
-- change husband's first name and wife's first name on lines 72 and 97 (respectively)
+- change husband's first name and wife's first name on lines 77 and 102 (respectively)
 - add restauraunts to the array (`self.places`) beginning on line 22
     * use the format `Restauraunt(<restauraunt name (str)> , <weight (float)>)` where weight 
       is a float that represents how heavily the restauraunt should be changed
